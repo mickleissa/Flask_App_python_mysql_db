@@ -1,10 +1,25 @@
 sudo apt install net-tools
 git clone https://github.com/mickleissa/Flask_App_python_mysql_db.git
-
-sudo apt-get install nodejs
-sudo apt install npm
-npm install express
-sudo npm install -g mysql
+sudo apt update 
+sudo apt-get install nodejs -y
+sudo apt install npm -y
+sudo npm install express # required to run
+sudo npm install mysql # required to run
 cd /home/ubuntu/Flask_App_python_mysql_db/templates
 # sudo netstat -tulnp | grep :5000
 node app.js 
+
+---------------------------------------
+#! /bin/bash
+# shellcheck disable=SC2164
+cd /home/ubuntu
+git clone https://github.com/mickleissa/Flask_App_python_mysql_db.git
+yes | sudo apt update
+sudo apt-get install nodejs -y
+echo 'Waiting for 30 seconds before running the app.py'
+sudo apt install npm -y
+sudo npm install express  # required to run
+sudo npm install mysql # required to run mysql
+echo 'Waiting for 30 seconds before running the app.py'
+cd /home/ubuntu/Flask_App_python_mysql_db/templates
+node app.js

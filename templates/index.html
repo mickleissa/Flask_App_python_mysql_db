@@ -1,56 +1,347 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask REST API UI</title>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Home</title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" type="text/css" href="css/style.css">
+
 </head>
 <body>
-<h1>Flask REST API UI</h1>
+   
+<!-- header section starts  -->
 
-<h2>Insert Record</h2>
-<form id="insertForm">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required>
-    <button type="button" onclick="insertRecord()">Insert Record</button>
-</form>
+<header class="header">
 
-<h2>View Data</h2>
-<ul id="dataList"></ul>
+   <nav class="navbar nav-1">
+      <section class="flex">
+         <a href="index.html" class="logo"><i class="fas fa-house"></i>MyHome</a>
 
-<script>
-    function insertRecord() {
-        const name = document.getElementById('name').value;
-        fetch('/insert_record', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ 'name': name }),
-        })
-        .then(response => response.text())
-        .then(data => {
-            alert(data);
-            loadData();
-        });
-    }
+         <ul>
+            <li><a href="#">Post Property<i class="fas fa-paper-plane"></i></a></li>
+         </ul>
+      </section>
+   </nav>
 
-    function loadData() {
-        fetch('/data')
-        .then(response => response.json())
-        .then(data => {
-            const dataList = document.getElementById('dataList');
-            dataList.innerHTML = '';
-            data.forEach(record => {
-                const listItem = document.createElement('li');
-                listItem.textContent = `ID: ${record.id}, Name: ${record.name}`;
-                dataList.appendChild(listItem);
-            });
-        });
-    }
+   <nav class="navbar nav-2">
+      <section class="flex">
+         <div id="menu-btn" class="fas fa-bars"></div>
 
-    // Load initial data when the page is loaded
-    loadData();
-</script>
+         <div class="menu">
+            <ul>
+               <li><a href="#">Buy<i class="fas fa-angle-down"></i></a>
+                  <ul>
+                     <li><a href="#">House</a></li>
+                     <li><a href="#">Flat</a></li>
+                     <li><a href="#">Shop</a></li>
+                     <li><a href="#">Ready To Move</a></li>
+                     <li><a href="#">Furnished</a></li>
+                  </ul>
+               </li>
+               <li><a href="#">Sell<i class="fas fa-angle-down"></i></a>
+                  <ul>
+                     <li><a href="#">Post Property</a></li>
+                     <li><a href="#">Dashboard</a></li>
+                  </ul>
+               </li>
+               <li><a href="#">Rent</a>
+                  <ul>
+                     <li><a href="#">House</a></li>
+                     <li><a href="#">Flat</a></li>
+                     <li><a href="#">Shop</a></li>
+                  </ul>
+               </li>
+               <li><a href="#">help<i class="fas fa-angle-down"></i></a>
+                  <ul>
+                     <li><a href="about.html">About us</a></i></li>
+                     <li><a href="contact.html">Contact us</a></i></li>
+                     <li><a href="contact.html#faq">FAQ</a></i></li>
+                  </ul>
+               </li>
+            </ul>
+         </div>
+
+         <ul>
+            <li><a href="#">Saved <i class="far fa-heart"></i></a></li>
+            <li><a href="#">Account<i class="fas fa-angle-down"></i></a>
+               <ul>
+                  <li><a href="login.html">Login</a></li>
+                  <li><a href="register.html">Register</a></li>
+               </ul>
+            </li>
+         </ul>
+      </section>
+   </nav>
+
+</header>
+
+<!-- header section ends -->
+
+<!-- home section starts  -->
+
+<div class="home">
+
+   <section class="center">
+
+      <form action="search.html" method="post">
+         <h3>Find Your Perfect Home</h3>
+         <div class="box">
+            <p>Enter Location <span>*</span></p>
+            <input type="text" name="location" required maxlength="50" placeholder="Enter City Name or Zip Code" class="input">
+         </div>
+         <div class="flex">
+            <div class="box">
+               <p>Property Type <span>*</span></p>
+               <select name="type" class="input" required>
+                  <option value="flat">Home</option>
+                  <option value="house">Condo</option>
+                  <option value="shop">Apartment</option>
+               </select>
+            </div>
+            <div class="box">
+               <p>Bedroom <span>*</span></p>
+               <select name="bhk" class="input" required>
+                  <option value="1">Any</option>
+                  <option value="1">1 bedroom</option>
+                  <option value="2">2 bedroom</option>
+                  <option value="3">3 bedroom</option>
+                  <option value="4">4 bedroom</option>
+                  <option value="5">5 bedroom</option>
+               </select>
+            </div>
+            <div class="box">
+               <p>Maximum Budget <span>*</span></p>
+               <select name="minimum" class="input" required>
+                  <option value="2000000">Any</option>
+                  <option value="5000000">$500-1000</option>
+                  <option value="1000000">$1000-1500</option>
+                  <option value="2000000">$1500-2000</option>
+                  <option value="3000000">$2000-2500</option>
+                  <option value="4000000">$2500-3000</option>
+                  <option value="4000000">$3000-4000</option>
+               </select>
+            </div>
+            <div class="box">
+               <p>Bathroom <span>*</span></p>
+               <select name="maximum" class="input" required>
+                  <option value="5000000">Any</option>
+                  <option value="1000000">1 Bathroom</option>
+                  <option value="2000000">2 Bathroom</option>
+                  <option value="3000000">3 Bathroom</option>
+                  <option value="4000000">4 batroom</option>
+               </select>
+            </div>
+         </div>
+         <input type="submit" value="search property" name="search" class="btn">
+      </form>
+
+   </section>
+
+</div>
+
+<!-- home section ends -->
+
+<!-- services section starts  -->
+
+<section class="services">
+
+   <h1 class="heading">Our Services</h1>
+
+   <div class="box-container">
+
+      <div class="box">
+         <img src="images/icon-1.png" alt="">
+         <h3>Buy Home</h3>
+         <p>Real Estate Cannot Be Lost. Purchased with common sense, It is about the safest investment in the world</p>
+      </div>
+
+      <div class="box">
+         <img src="images/icon-2.png" alt="">
+         <h3>Rent Home</h3>
+         <p>Discover your perfect home: comfortable, convenient, and affordable. for work, job,study and family </p>
+      </div>
+
+      <div class="box">
+         <img src="images/icon-3.png" alt="">
+         <h3>Sell Home</h3>
+         <p>Maximize your home's value and sell quickly with the highest market price</p>
+      </div>
+
+      <div class="box">
+         <img src="images/icon-4.png" alt="">
+         <h3>Real-State and Buildings</h3>
+         <p>Find the perfect real estate and buildings to match your vision and aspirations</p>
+      </div>
+
+      <div class="box">
+         <img src="images/icon-5.png" alt="">
+         <h3>Shops and Malls</h3>
+         <p>Explore a variety of shops and malls offering everything from fashion to food.</p>
+      </div>
+
+      <div class="box">
+         <img src="images/icon-6.png" alt="">
+         <h3>24/7 service</h3>
+         <p>Reliable assistance whenever you need it, ensuring peace of mind around the clock</p>
+      </div>
+
+   </div>
+
+</section>
+
+<!-- services section ends -->
+
+<!-- listings section starts  -->
+
+<section class="listings">
+
+   <h1 class="heading">latest listings</h1>
+
+   <div class="box-container">
+
+      <div class="box">
+         <div class="admin">
+            <h3>O</h3>
+            <div>
+               <p>Oz Issa</p>
+               <span>01-02-2024</span>
+            </div>
+         </div>
+         <div class="thumb">
+            <p class="total-images"><i class="far fa-image"></i><span>4</span></p>
+            <p class="type"><span>Home</span><span>Sale</span></p>
+            <form action="" method="post" class="save">
+               <button type="submit" name="save" class="far fa-heart"></button>
+            </form>
+            <img src="images/house-img-1.webp" alt="">
+         </div>
+         <h3 class="name">Modern Home</h3>
+         <p class="location"><i class="fas fa-map-marker-alt"></i><span>Mannasa, Virginia, 20111</span></p>
+         <div class="flex">
+            <p><i class="fas fa-bed"></i><span>3</span></p>
+            <p><i class="fas fa-bath"></i><span>2</span></p>
+            <p><i class="fas fa-maximize"></i><span>750sqft</span></p>
+         </div>
+         <a href="view_property.html" class="btn">view property</a>
+      </div>
+
+      <div class="box">
+         <div class="admin">
+            <h3>M</h3>
+            <div>
+               <p>Moh Ali</p>
+               <span>02-11-2024</span>
+            </div>
+         </div>
+         <div class="thumb">
+            <p class="total-images"><i class="far fa-image"></i><span>4</span></p>
+            <p class="type"><span>Appartment</span><span>Rent</span></p>
+            <form action="" method="post" class="save">
+               <button type="submit" name="save" class="far fa-heart"></button>
+            </form>
+            <img src="images/house-img-2.webp" alt="">
+         </div>
+         <h3 class="name">Appartments</h3>
+         <p class="location"><i class="fas fa-map-marker-alt"></i><span>Orlando, Florida, 32835</span></p>
+         <div class="flex">
+            <p><i class="fas fa-bed"></i><span>3</span></p>
+            <p><i class="fas fa-bath"></i><span>2</span></p>
+            <p><i class="fas fa-maximize"></i><span>750sqft</span></p>
+         </div>
+         <a href="view_property.html" class="btn">view property</a>
+      </div>
+
+      <div class="box">
+         <div class="admin">
+            <h3>j</h3>
+            <div>
+               <p>john Cena</p>
+               <span>02-20-2024</span>
+            </div>
+         </div>
+         <div class="thumb">
+            <p class="total-images"><i class="far fa-image"></i><span>4</span></p>
+            <p class="type"><span>Appartments</span><span>Rent</span></p>
+            <form action="" method="post" class="save">
+               <button type="submit" name="save" class="far fa-heart"></button>
+            </form>
+            <img src="images/house-img-3.jpg" alt="">
+         </div>
+         <h3 class="name">Appartments</h3>
+         <p class="location"><i class="fas fa-map-marker-alt"></i><span>Orlando, Florida, 32080</span></p>
+         <div class="flex">
+            <p><i class="fas fa-bed"></i><span>3</span></p>
+            <p><i class="fas fa-bath"></i><span>2</span></p>
+            <p><i class="fas fa-maximize"></i><span>750sqft</span></p>
+         </div>
+         <a href="view_property.html" class="btn">View Property</a>
+      </div>
+
+   </div>
+
+   <div style="margin-top: 2rem; text-align:center;">
+      <a href="listings.html" class="inline-btn">View Apartmentll</a>
+   </div>
+
+</section>
+
+<!-- listings section ends -->
+
+
+
+
+
+
+
+
+
+
+<!-- footer section starts  -->
+
+<footer class="footer">
+
+   <section class="flex">
+
+      <div class="box">
+         <a href="tel:1234567890"><i class="fas fa-phone"></i><span>407-call-us</span></a>
+         <a href="tel:1112223333"><i class="fas fa-phone"></i><span>302-call-us</span></a>
+         <a href="mailto:shaikhanas@gmail.com"><i class="fas fa-envelope"></i><span>myhome@gmail.com</span></a>
+         <a href="#"><i class="fas fa-map-marker-alt"></i><span>Manassa, Virginia - 20110</span></a>
+      </div>
+
+      <div class="box">
+         <a href="home.html"><span>Home</span></a>
+         <a href="about.html"><span>About</span></a>
+         <a href="contact.html"><span>Contact</span></a>
+         <a href="listings.html"><span>All listings</span></a>
+         <a href="#"><span>Saved Properties</span></a>
+      </div>
+
+      <div class="box">
+         <a href="#"><span>Facebook</span><i class="fab fa-facebook-f"></i></a>
+         <a href="#"><span>Twitter(X)</span><i class="fab fa-twitter"></i></a>
+         <a href="#"><span>Linkedin</span><i class="fab fa-linkedin"></i></a>
+         <a href="#"><span>Instagram</span><i class="fab fa-instagram"></i></a>
+
+      </div>
+
+   </section>
+
+   <div class="credit">&copy; copyright @ 2024 by <span>Myhome LLC</span> | all rights reserved!</div>
+
+</footer>
+
+<!-- footer section ends -->
+
+
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
+
 </body>
 </html>
