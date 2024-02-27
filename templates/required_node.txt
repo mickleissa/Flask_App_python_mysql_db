@@ -1,0 +1,10 @@
+sudo apt install net-tools
+git clone https://github.com/mickleissa/Flask_App_python_mysql_db.git
+
+sudo apt-get install nodejs
+sudo apt install npm
+npm install express
+sudo npm install -g mysql
+cd /home/ubuntu/Flask_App_python_mysql_db/templates
+# sudo netstat -tulnp | grep :5000
+node app.js 
